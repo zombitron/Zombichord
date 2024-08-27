@@ -19,7 +19,10 @@ function createButtons(circleClass, chordNames, radius) {
 
         button.style.left = `calc(50% + ${x}px )`;
         button.style.top = `calc(50% + ${y}px )`;
-        
+        button.addEventListener("click", function () {
+            console.log(chordNames[i]);
+        });
+
         button.addEventListener("click", function(){
             socket.emit("message", {id: "chord", value: this.value});
         })
