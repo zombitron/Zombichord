@@ -1,10 +1,9 @@
 var canvas = document.getElementById("strumPlate");
-const ctx = canvas.getContext("2d");
 
 function getMousePosition(canvas, event) {
-    const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const tone = Math.floor((x / rect.width)*18);
+    var rect = canvas.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var tone = Math.floor((x / rect.width)*18);
     console.log (tone);
 }
 
