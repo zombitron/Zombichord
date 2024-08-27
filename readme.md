@@ -1,4 +1,5 @@
 # Zombichord
+Omichord build with old phones
 http://zombitron.org
 
 ## Installation
@@ -8,3 +9,7 @@ http://zombitron.org
 > npm install
 > npm start
 ```
+
+Dans le navigateur : 
+[localhost:3000/] > interface cercle des quintes
+[http://localhost:3000/strumplate] > interface strumplate
