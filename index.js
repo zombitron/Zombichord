@@ -2,19 +2,11 @@ const Zombitron = require("./src/Zombitron")
 const zombitronica = new Zombitron();
 
 zombitronica.app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/views/zombitronica.html');
+  res.sendFile(__dirname + '/views/chords.html');
 });
 
-zombitronica.app.get('/master', function (req, res) {
-  res.sendFile(__dirname + '/views/master.html');
-});
-
-zombitronica.app.get('/monotron', function (req, res) {
-  res.sendFile(__dirname + '/views/monotron.html');
-});
-
-zombitronica.app.get('/effects', function (req, res) {
-  res.sendFile(__dirname + '/views/effects.html');
+zombitronica.app.get('/strumplate', function (req, res) {
+  res.sendFile(__dirname + '/views/strumplate.html');
 });
 
 zombitronica.socketServer.on('connection', (socket) => {
