@@ -18,6 +18,9 @@ function createButtons(circleClass, chordNames, radius) {
 
         button.style.left = `calc(50% + ${x}px )`;
         button.style.top = `calc(50% + ${y}px )`;
+        button.addEventListener("click", function () {
+            console.log(chordNames[i]);
+        });
 
         // TODO : Ajouter le listener pour declencher l'envoie du message WSocket
         circle.appendChild(button);
