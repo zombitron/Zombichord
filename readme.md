@@ -1,5 +1,6 @@
 # Zombichord
-Omichord build with old phones
+Omnichord built with old phones
+
 http://zombitron.org
 
 ## Installation
@@ -11,5 +12,5 @@ http://zombitron.org
 ```
 
 Dans le navigateur : 
-[localhost:3000/] > interface cercle des quintes
-[http://localhost:3000/strumplate] > interface strumplate
+- http://localhost:3000/ > interface cercle des quintes
+- http://localhost:3000/strumplate > interface strumplate
