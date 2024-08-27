@@ -26,7 +26,6 @@ function createButtons(circleClass, chordNames, radius) {
         circle.appendChild(button);
     }
 }
-
 createButtons('.innerCircle', chordNamesm, 120);
 createButtons('.outerCircle', chordNamesMaj, 180);
 

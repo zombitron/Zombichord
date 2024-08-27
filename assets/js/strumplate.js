@@ -1,10 +1,20 @@
-var sizeSequencer = [700, 200];
-var rows = 1;
-var bars = 18;
-var matrix = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // je pense pas besoi de ca 
-]
+var canvas = document.getElementById("strumPlate");
 
-// @Marion > la listen les positions sur le canvas html 
+function getMousePosition(canvas, event) {
+    var rect = canvas.getBoundingClientRect();
+    var x = event.clientX - rect.left;
+    var tone = Math.floor((x / rect.width)*18);
+    console.log (tone);
+}
 
-// Déclencher l'envoie du message WS ontouch ou mouse move
+canvas.addEventListener("mousemove", function (e) {
+    getMousePosition(canvas, e);
+});
+
+document.addEventListener("click", function(event) {
+    document.querySelector('body').requestFullscreen();
+    document.addEventListener("dblclick", (ev) => {
+        window.location.reload();
+        document.querySelector('body').requestFullscreen();
+    });
+}, { once: true });

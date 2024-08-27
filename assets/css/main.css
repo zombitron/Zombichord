@@ -5,11 +5,13 @@
 body {
     background: #466B84;
 }
-#strumplateSequencer {
+#strumPlate {
     background: #fff;
     border-style: solid;
     border-color: #fff;
     border-width: 1pt;
+    height: 100px;
+    width: 500px;
 }
 
 body {
