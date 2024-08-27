@@ -1,5 +1,5 @@
 # Zombichord
-Omichord built with old phones
+Omnichord built with old phones
 
 http://zombitron.org
 
