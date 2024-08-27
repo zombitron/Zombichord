@@ -1,0 +1,24 @@
+{
+  "name": "zombichord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zombitron/Zombichord.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zombitron/Zombichord/issues"
+  },
+  "homepage": "https://github.com/zombitron/Zombichord#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "tone": "^15.0.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
