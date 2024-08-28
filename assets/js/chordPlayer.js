@@ -1,17 +1,5 @@
 var chordPlayer = {
     chordsUrls: {
-        "A2": "A2.wav",
-        "A#2": "A#2.wav",
-        "B2": "B2.wav",
-        "C2": "C2.wav",
-        "C#2": "C#2.wav",
-        "D2": "D2.wav",
-        "D#2": "D#2.wav",
-        "E2": "E2.wav",
-        "F2": "F2.wav",
-        "F#2": "F#2.wav",
-        "G2": "G2.wav",
-        "G#2": "G#2.wav",
         "A3": "A3.wav",
         "A#3": "A#3.wav",
         "B3": "B3.wav",
@@ -26,7 +14,6 @@ var chordPlayer = {
         "G#3": "G#3.wav",
     },
     chordInstrument: 'chordPlayer2',
-    playing: false,
     ready: false,
     initialize: function () {
         this.sampler = new Tone.Sampler({
@@ -42,14 +29,11 @@ var chordPlayer = {
     },
     startChord: function (notes) {
         if(this.ready){
-            this.notes = notes;
             this.sampler.triggerAttack(notes);
-            this.playing = true;
         }
     },
-    stopChord: function () {
-        this.sampler.triggerRelease(this.notes);
-        this.playing = false;
+    stopChord: function (notes) {
+        this.sampler.triggerRelease(notes);
     }
 }
 export default chordPlayer

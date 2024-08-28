@@ -7,6 +7,10 @@ var musicPlayer = {
     },
     notes: ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"],
     chordPlayer: null,
+    currentChord : {
+        name: '',
+        notes: []
+    },
     initialize() {
         this.initializeTone();
     },
@@ -66,7 +70,7 @@ var musicPlayer = {
         chordDetails.note = this.getNoteId(chord);
         return chordDetails;
     },
-    playChord(chord) {
+    getChordNotes(chord){
         var chordDetails = this.parseChord(chord);
         var octave = 3;
         var transposedScale = this.getScale(chordDetails.note, chordDetails.scale, octave);
@@ -77,15 +81,21 @@ var musicPlayer = {
         var dominant = transposedScale[4] + octave;
         var submediant = transposedScale[5] + octave;
         var leadingTone = transposedScale[6] + octave;
-
-        if(this.chordPlayer.playing){
-            this.chordPlayer.stopChord();
-        }
         var notes = [tonic, mediant, dominant];
-        this.chordPlayer.startChord(notes);
+        return notes
     },
-    stopChord(){ 
-        this.chordPlayer.stopChord();
+    playChord(chord) {
+        this.chordPlayer.stopChord(this.currentChord.notes);
+        this.currentChord.name = chord;
+        this.currentChord.notes = this.getChordNotes(this.currentChord.name);
+        this.chordPlayer.startChord(this.currentChord.notes);
+    },
+    stopChord(chord){ 
+        if(chord == this.currentChord.name){
+            this.chordPlayer.stopChord(this.currentChord.notes);
+            this.currentChord.name = '';
+            this.currentChord.notes = [];
+        }
     }
 }
 export default musicPlayer
