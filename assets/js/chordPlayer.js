@@ -27,21 +27,25 @@ var chordPlayer = {
     },
     chordInstrument: 'chordPlayer2',
     playing: false,
-
+    ready: false,
     initialize: function () {
         this.sampler = new Tone.Sampler({
             urls: this.chordsUrls,
             release: 0.1,
             attack: 0.1,
             volume: -10,
+            onload: function(){
+                this.ready = true;
+            }.bind(this),
             baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
         }).toDestination();
     },
-
     startChord: function (notes) {
-        this.notes = notes;
-        this.sampler.triggerAttack(notes);
-        this.playing = true;
+        if(this.ready){
+            this.notes = notes;
+            this.sampler.triggerAttack(notes);
+            this.playing = true;
+        }
     },
     stopChord: function () {
         this.sampler.triggerRelease(this.notes);
