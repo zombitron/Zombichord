@@ -78,8 +78,14 @@ var musicPlayer = {
         var submediant = transposedScale[5] + octave;
         var leadingTone = transposedScale[6] + octave;
 
+        if(this.chordPlayer.playing){
+            this.chordPlayer.stopChord();
+        }
         var notes = [tonic, mediant, dominant];
         this.chordPlayer.startChord(notes);
+    },
+    stopChord(){ 
+        this.chordPlayer.stopChord();
     }
 }
 export default musicPlayer

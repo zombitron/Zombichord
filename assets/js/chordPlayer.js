@@ -25,16 +25,27 @@ var chordPlayer = {
         "G3": "G3.wav",
         "G#3": "G#3.wav",
     },
-    chordInstrument: 'chordPlayer1',
-    initialize: function(){
+    chordInstrument: 'chordPlayer2',
+    playing: false,
+
+    initialize: function () {
         this.sampler = new Tone.Sampler({
-        urls: this.chordsUrls,
-        release: 1,
-        sustain : 10,
-        baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
-    }).toDestination();},
-    startChord: function(notes){
-        this.sampler.triggerAttackRelease(notes, 0.5);
+            urls: this.chordsUrls,
+            release: 0.1,
+            attack: 0.1,
+            volume: -10,
+            baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
+        }).toDestination();
+    },
+
+    startChord: function (notes) {
+        this.notes = notes;
+        this.sampler.triggerAttack(notes);
+        this.playing = true;
+    },
+    stopChord: function () {
+        this.sampler.triggerRelease(this.notes);
+        this.playing = false;
     }
 }
 export default chordPlayer

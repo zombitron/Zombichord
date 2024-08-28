@@ -15,7 +15,7 @@ var zombichord = {
             this.music.playChord(e.detail);
         }.bind(this))
         chordsCircle.element.addEventListener('stopChord', function(e){
-            // this.music.stopChord();
+            this.music.stopChord();
         }.bind(this))
         // this.socket.on('harp', function(data) {
         //     this.music.startChord(data);
