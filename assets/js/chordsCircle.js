@@ -3,11 +3,14 @@ var chordsCircle = {
     chordsMin : ["F#m", "C#m", "G#m", "Ebm", "Bbm", "Fm", "Cm", "Gm", "Dm", "Am", "Em", "Bm"],
     element: null,
     buttons : [],
+    currentChord: null,
     initialize: function(zombichord){
         this.zombichord = zombichord;
         this.element = document.querySelector(".chordsContainer");
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
+        this.currentChord = document.querySelector(".currentChord");
+        this.nextChord = document.querySelector(".nextChord");
     },
     createCircle: function(circleClass, chordNames, radius) {
         var circle = document.querySelector(circleClass);
@@ -32,6 +35,9 @@ var chordsCircle = {
             e.preventDefault();
             var event = new CustomEvent("startChord", {detail: button.value} );
             this.element.dispatchEvent(event)
+
+            this.currentChord.textContent = button.value;
+
         }.bind(this));
 
         button.addEventListener("touchend", function(e){
