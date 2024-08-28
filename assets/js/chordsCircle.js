@@ -4,12 +4,9 @@ var chordsCircle = {
     element: null,
     buttons : [],
     currentChord: null,
-    nextChord: null,
     initialize: function(zombichord){
         this.zombichord = zombichord;
         this.element = document.querySelector(".chordsContainer");
-        var currentChord = document.querySelector(".currentChord");
-        var nextChord = document.querySelector(".nextChord");
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
         this.currentChord = document.querySelector(".currentChord");
