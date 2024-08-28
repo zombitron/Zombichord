@@ -13,8 +13,4 @@ canvas.addEventListener("mousemove", function (e) {
 
 document.addEventListener("click", function(event) {
     document.querySelector('body').requestFullscreen();
-    document.addEventListener("dblclick", (ev) => {
-        window.location.reload();
-        document.querySelector('body').requestFullscreen();
-    });
 }, { once: true });
