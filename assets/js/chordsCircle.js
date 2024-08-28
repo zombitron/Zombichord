@@ -35,7 +35,6 @@ var chordsCircle = {
             e.preventDefault();
             var event = new CustomEvent("startChord", {detail: button.value} );
             this.element.dispatchEvent(event)
-
             this.currentChord.textContent = button.value;
 
         }.bind(this));
@@ -44,6 +43,7 @@ var chordsCircle = {
             e.preventDefault();
             var event = new CustomEvent("stopChord", {detail: button.value} );
             this.element.dispatchEvent(event);
+            this.currentChord.textContent = '';
         }.bind(this));
         return button;
     }
