@@ -21,8 +21,7 @@ var musicPlayer = {
         Tone.context.resume();
         Tone.start();
     },
-    getScale(note, scale = 'major') {
-        var scale = this.scales.major;
+    getScale(note, scale = this.scales.major) {
         var transposed_notes = [];
         for (var i = 0; i < 7; i++) {
             transposed_notes.push(this.notes[(note + scale[i]) % 12]);
@@ -57,7 +56,7 @@ var musicPlayer = {
     },
     parseChord(chord) {
         var chordDetails = {
-            scale: 'major',
+            scale:  this.scales.major,
             note: 'A'
         };
         if (chord.includes('m')) {
