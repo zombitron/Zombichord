@@ -19,12 +19,17 @@ function createButtons(circleClass, chordNames, radius) {
 
         button.style.left = `calc(50% + ${x}px )`;
         button.style.top = `calc(50% + ${y}px )`;
-        button.addEventListener("click", function () {
-            console.log(chordNames[i]);
-        });
+
+        var currentChord = document.querySelector(".currentChord");
+        var nextChord = document.querySelector(".nextChord");
 
         button.addEventListener("click", function(){
             socket.emit("message", {id: "chord", value: this.value});
+            currentChord.textContent = chordNames[i];
+            nextChord.textContent = chordNames[i+1];
+            if (i == chordNames.length -1){
+                nextChord.textContent = chordNames[0];
+            }
         })
         circle.appendChild(button);
     }
