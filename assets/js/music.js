@@ -1,5 +1,7 @@
 import "/scripts/tone/build/Tone.js";
 import chordPlayer from '/assets/js/chordPlayer.js';
+import harpPlayer from '/assets/js/harpPlayer.js';
+
 var musicPlayer = {
     scales: {
         major: [0, 2, 4, 5, 7, 9, 11, 12],
@@ -7,6 +9,7 @@ var musicPlayer = {
     },
     notes: ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"],
     chordPlayer: null,
+    harpPlayer: null,
     currentChord : {
         name: '',
         notes: []
@@ -17,6 +20,10 @@ var musicPlayer = {
     initializeTone(){
         this.chordPlayer = chordPlayer;
         this.chordPlayer.initialize();
+
+        this.harpPlayer = harpPlayer;
+        this.harpPlayer.initialize();
+
         Tone.loaded().then(() => {
             this.start();
         });
@@ -93,9 +100,21 @@ var musicPlayer = {
     stopChord(chord){ 
         if(chord == this.currentChord.name){
             this.chordPlayer.stopChord(this.currentChord.notes);
-            this.currentChord.name = '';
-            this.currentChord.notes = [];
         }
+    },
+    playHarp(note){
+        if(this.currentChord.notes.length > 0){ // only play of there is a chord activated
+            var octave = Math.floor(note / 12) + 2; // finding octave according to note number
+            var note = note % 12; // finding note position on octave
+            note = Math.floor(note * this.currentChord.notes.length / 12); // keeping only x possibilities
+            // applying transformation according to current chord
+            note = this.currentChord.notes[note];
+            note = this.changeOctave(note, octave);
+            this.harpPlayer.play(note);
+        }
+    },
+    changeOctave(note, octave){
+        return note.slice(0,-1)+octave;
     }
 }
 export default musicPlayer
