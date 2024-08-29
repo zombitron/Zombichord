@@ -1,5 +1,5 @@
 import '/socket.io/socket.io.js';
-import strumPlate from '/assets/js/strumplate.js'; // charge la vue strumplate
+import strumPlate from '/assets/js/zombichord/ui/strumplate.js'; // charge la vue strumplate
 
 var socket = io();
 strumPlate.initialize();
