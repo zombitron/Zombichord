@@ -4,8 +4,7 @@ var chordsCircle = {
     element: null,
     buttons : [],
     currentChord: null,
-    initialize: function(zombichord){
-        this.zombichord = zombichord;
+    initialize: function(){
         this.element = document.querySelector(".chordsContainer");
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
@@ -20,23 +19,21 @@ var chordsCircle = {
             var y = radius * Math.sin(angle * (Math.PI / 180));
             var button = this.createButton(x, y, chordNames[i]);
             circle.appendChild(button);
-            this.buttons.push(button)
+            this.buttons.push(button);
         }
     },
     createButton: function(posX, posY, chord){
         var button = document.createElement('button');
         button.classList.add("chordButton");
         button.textContent = chord;
-        button.value = chord;    
+        button.value = chord;
         button.style.left = `calc(50% + ${posX}px )`;
-        button.style.top = `calc(50% + ${posY}px )`;    
-
+        button.style.top = `calc(50% + ${posY}px )`;
         button.addEventListener("touchstart", function(e){
             e.preventDefault();
             var event = new CustomEvent("startChord", {detail: button.value} );
             this.element.dispatchEvent(event)
             this.currentChord.textContent = button.value;
-
         }.bind(this));
 
         button.addEventListener("touchend", function(e){

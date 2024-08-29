@@ -1,6 +1,6 @@
 import "/scripts/tone/build/Tone.js";
-import chordPlayer from '/assets/js/chordPlayer.js';
-import harpPlayer from '/assets/js/harpPlayer.js';
+import chordPlayer from '/assets/js/zombichord/music/chordPlayer.js';
+import harpPlayer from '/assets/js/zombichord/music/harpPlayer.js';
 
 var musicPlayer = {
     scales: {
@@ -91,7 +91,7 @@ var musicPlayer = {
         var notes = [tonic, mediant, dominant];
         return notes
     },
-    playChord(chord) {
+    startChord(chord) {
         this.chordPlayer.stopChord(this.currentChord.notes);
         this.currentChord.name = chord;
         this.currentChord.notes = this.getChordNotes(this.currentChord.name);
@@ -104,7 +104,7 @@ var musicPlayer = {
     },
     playHarp(note){
         if(this.currentChord.notes.length > 0){ // only play of there is a chord activated
-            var octave = Math.floor(note / 12) + 2; // finding octave according to note number
+            var octave = Math.floor(note / 12) + 1; // finding octave according to note number
             var note = note % 12; // finding note position on octave
             note = Math.floor(note * this.currentChord.notes.length / 12); // keeping only x possibilities
             // applying transformation according to current chord

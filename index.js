@@ -6,7 +6,7 @@ zombitronica.app.get('/', function (req, res) {
 });
 
 zombitronica.app.get('/strumplate', function (req, res) {
-  res.sendFile(__dirname + '/views/strumplate.html');
+  res.sendFile(__dirname + '/views/harp.html');
 });
 
 zombitronica.socketServer.on('connection', (socket) => {

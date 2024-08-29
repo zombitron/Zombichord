@@ -1,18 +1,15 @@
-import '/socket.io/socket.io.js';
-
 var strumPlate = {
     socket: null,
     keysNumber:  60, // ( 5 * 12 )
     currentTone : null,
     initialize(){
-        this.socket = io();
-        this.canvas = document.getElementById("strumPlate");
-        this.rect = this.canvas.getBoundingClientRect();
-        this.canvas.addEventListener("touchstart", function (e) {
+        this.element = document.getElementById("strumPlate");
+        this.rect = this.element.getBoundingClientRect();
+        this.element.addEventListener("touchstart", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
         
-        this.canvas.addEventListener("touchmove", function (e) {
+        this.element.addEventListener("touchmove", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
         this.createKeys();
@@ -23,31 +20,29 @@ var strumPlate = {
             var x = e.touches[i].clientX - this.rect.left;
             var tone = Math.floor((x / this.rect.width) * this.keysNumber);
             if(e.type == 'touchstart'){
-                this.socket.emit('message', {id:'harp', value: tone});
+                var event = new CustomEvent("harp", {detail: tone} );
+                this.element.dispatchEvent(event)
                 this.currentTone = tone;
+
             }else if (e.type == 'touchmove'){
                 if(this.currentTone != tone){
-                    this.socket.emit('message', {id:'harp', value: tone});
+                    var event = new CustomEvent("harp", {detail: tone} );
+                    this.element.dispatchEvent(event)
                     this.currentTone = tone;
                 }
             }
         }
     },
     createKeys() {
-        var ctx = this.canvas.getContext("2d");
-        var keyWidth = this.canvas.width / this.keysNumber;
+        var ctx = this.element.getContext("2d");
+        var keyWidth = this.element.width / this.keysNumber;
         for (var i = 0; i < this.keysNumber; i++) {
             ctx.fillStyle = "#66828E";
-            ctx.fillRect(i * keyWidth, 0, keyWidth, this.canvas.height);
+            ctx.fillRect(i * keyWidth, 0, keyWidth, this.element.height);
 
             ctx.strokeStyle = "#fff";
-            ctx.strokeRect(i * keyWidth, 0, keyWidth, this.canvas.height);
+            ctx.strokeRect(i * keyWidth, 0, keyWidth, this.element.height);
         }
     }
 };
-
-strumPlate.initialize();
-
-document.addEventListener("click", function(event) {
-    document.querySelector('body').requestFullscreen();
-}, { once: true });
+export default strumPlate;
