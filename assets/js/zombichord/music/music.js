@@ -10,6 +10,7 @@ var musicPlayer = {
     notes: ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"],
     chordPlayer: null,
     harpPlayer: null,
+    sthActivated : false,
     currentChord : {
         name: '',
         notes: []
@@ -88,7 +89,11 @@ var musicPlayer = {
         var dominant = transposedScale[4] + octave;
         var submediant = transposedScale[5] + octave;
         var leadingTone = transposedScale[6] + octave;
+
         var notes = [tonic, mediant, dominant];
+        if(this.sthActivated){
+            notes.push(leadingTone);
+        }
         return notes
     },
     startChord(chord) {
@@ -115,6 +120,9 @@ var musicPlayer = {
     },
     changeOctave(note, octave){
         return note.slice(0,-1)+octave;
+    },
+    toggle7th(activated){
+        this.sthActivated = activated;
     }
 }
 export default musicPlayer

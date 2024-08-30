@@ -11,14 +11,24 @@ var zombichord = {
     initializeUI: function () {
         this.socket = io();
 
-        this.socket.on('startChord', function (note) {
+        this.socket.on('chordTrigger', function (note) {
             this.music.startChord(note);
         }.bind(this));
         
-        this.socket.on('stopChord', function (note) {
-            this.music.stopChord(note);
+        this.socket.on('chordRelease', function (note) {
+            if(!this.chordMemory){
+                this.music.stopChord(note);
+            }
         }.bind(this));
         
+        this.socket.on('7th', function (activated) {
+            this.music.toggle7th(activated);
+        }.bind(this));
+
+        this.socket.on('chordMemory', function (activated) {
+            this.chordMemory = activated;
+        }.bind(this));
+
         this.socket.on('harp', function (note) {
             if(note >= 0 && note < 60 ){
                 this.music.playHarp(note);

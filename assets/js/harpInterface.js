@@ -10,6 +10,6 @@ strumPlate.element.addEventListener('harp', function (e) {
 
 zombichord.initialize();
 
-document.addEventListener("click", (event) => {
-    document.querySelector('body').requestFullscreen();
-}, { once: true });
+// document.addEventListener("click", (event) => {
+//     document.querySelector('body').requestFullscreen();
+// }, { once: true });

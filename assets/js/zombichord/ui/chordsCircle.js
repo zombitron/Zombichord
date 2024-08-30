@@ -8,11 +8,14 @@ var chordsCircle = {
         this.element = document.querySelector(".chordsContainer");
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
+
+        // cree le 7th
+        this.createOptionButton('.septiemeButton', '7th');
+        // bouton chord memory
+        this.createOptionButton('.memoryButton', 'chordMemory');
+
         this.currentChord = document.querySelector(".currentChord");
     },
-   
-
-    
     createCircle: function(circleClass, chordNames, radius) {
         var circle = document.querySelector(circleClass);
         for (let i = 0; i < chordNames.length; i++) {
@@ -33,18 +36,25 @@ var chordsCircle = {
         button.style.top = `calc(50% + ${posY}px )`;
         button.addEventListener("touchstart", function(e){
             e.preventDefault();
-            var event = new CustomEvent("startChord", {detail: button.value} );
+            var event = new CustomEvent("chordTrigger", {detail: button.value} );
             this.element.dispatchEvent(event)
             this.currentChord.textContent = button.value;
         }.bind(this));
 
         button.addEventListener("touchend", function(e){
             e.preventDefault();
-            var event = new CustomEvent("stopChord", {detail: button.value} );
+            var event = new CustomEvent("chordRelease", {detail: button.value} );
             this.element.dispatchEvent(event);
             this.currentChord.textContent = '';
         }.bind(this));
         return button;
+    },
+    createOptionButton(buttonClass, eventName){
+        var optionButton = document.querySelector(buttonClass);
+        optionButton.addEventListener("change", function(e){
+            var event = new CustomEvent(eventName, {detail: e.target.checked});
+            this.element.dispatchEvent(event);
+        }.bind(this));
     }
 }
 export default chordsCircle

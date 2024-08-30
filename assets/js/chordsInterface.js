@@ -4,14 +4,22 @@ import chordsCircle from '/assets/js/zombichord/ui/chordsCircle.js'; // charge l
 // listen ton chords event and send socket
 var socket = io();
 chordsCircle.initialize();
-chordsCircle.element.addEventListener('startChord', function (e) {
-    socket.emit('message', {id:'startChord', value: e.detail});
-});
-chordsCircle.element.addEventListener('stopChord', function (e) {
-    socket.emit('message', {id:'stopChord', value: e.detail});
+chordsCircle.element.addEventListener('chordTrigger', function (e) {
+    socket.emit('message', {id:'chordTrigger', value: e.detail});
 });
 
+chordsCircle.element.addEventListener('chordRelease', function (e) {
+    socket.emit('message', {id:'chordRelease', value: e.detail});
+});
 
-document.addEventListener("click", (event) => {
-    document.querySelector('body').requestFullscreen();
-}, { once: true });
+chordsCircle.element.addEventListener('7th', function (e) {
+    socket.emit('message', {id:'7th', value: e.detail});
+});
+
+chordsCircle.element.addEventListener('chordMemory', function (e) {
+    socket.emit('message', {id:'chordMemory', value: e.detail});
+});
+
+// document.addEventListener("click", (event) => {
+//     document.querySelector('body').requestFullscreen();
+// }, { once: true });
