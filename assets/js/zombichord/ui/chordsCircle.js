@@ -9,7 +9,6 @@ var chordsCircle = {
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
         this.currentChord = document.querySelector(".currentChord");
-        this.nextChord = document.querySelector(".nextChord");
     },
     createCircle: function(circleClass, chordNames, radius) {
         var circle = document.querySelector(circleClass);
