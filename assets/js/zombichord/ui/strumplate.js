@@ -2,14 +2,17 @@ var strumPlate = {
     socket: null,
     keysNumber:  60, // ( 5 * 12 )
     currentTone : null,
-    initialize(){
-        this.element = document.getElementById("strumPlate");
-        this.rect = this.element.getBoundingClientRect();
-        this.element.addEventListener("touchstart", function (e) {
+    initialize(harpContainer){
+        this.element = harpContainer;
+
+        console.log(this.element)
+        this.strumplate = this.element.querySelector("#strumPlate");
+        this.rect = this.strumplate.getBoundingClientRect();
+        this.strumplate.addEventListener("touchstart", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
         
-        this.element.addEventListener("touchmove", function (e) {
+        this.strumplate.addEventListener("touchmove", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
         this.createKeys();
@@ -34,14 +37,14 @@ var strumPlate = {
         }
     },
     createKeys() {
-        var ctx = this.element.getContext("2d");
-        var keyWidth = this.element.width / this.keysNumber;
+        var ctx = this.strumplate.getContext("2d");
+        var keyWidth = this.strumplate.width / this.keysNumber;
         for (var i = 0; i < this.keysNumber; i++) {
             ctx.fillStyle = "#66828E";
-            ctx.fillRect(i * keyWidth, 0, keyWidth, this.element.height);
+            ctx.fillRect(i * keyWidth, 0, keyWidth, this.strumplate.height);
 
             ctx.strokeStyle = "#fff";
-            ctx.strokeRect(i * keyWidth, 0, keyWidth, this.element.height);
+            ctx.strokeRect(i * keyWidth, 0, keyWidth, this.strumplate.height);
         }
     }
 };

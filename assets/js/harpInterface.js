@@ -3,13 +3,36 @@ import strumPlate from '/assets/js/zombichord/ui/strumplate.js'; // charge la vu
 import zombichord from '/assets/js/zombichord/zombichord.js'; // et le Zombichord
 
 var socket = io();
-strumPlate.initialize();
-strumPlate.element.addEventListener('harp', function (e) {
-    socket.emit('message', {id:'harp', value: e.detail});
-});
 
-zombichord.initialize();
+var harpContainer = document.querySelector(".harpContainer");
 
-// document.addEventListener("click", (event) => {
-//     document.querySelector('body').requestFullscreen();
-// }, { once: true });
+if(harpContainer){
+
+
+    
+    strumPlate.initialize(harpContainer);
+    harpContainer.addEventListener('harp', function (e) {
+        socket.emit('message', {id:'harp', value: e.detail});
+    });
+    
+    zombichord.initialize(); // zombichord depend de tone js, c'est en ES6 
+    
+    socket.on('state', function (state) {
+        if(state == 'ready'){
+            console.log("ready");
+            harpContainer.classList.remove('loading');
+        }
+        if(state == 'loading'){
+            console.log("loading");
+            harpContainer.classList.add('loading');
+        }
+    });
+
+    document.addEventListener("click", function(event){
+        event.preventDefault;
+        if (document.fullscreenEnabled) {
+            // document.querySelector('body').requestFullscreen();
+        }
+        document.querySelector('.activate-screen').classList.add("activated");
+    }, { once: true, passive: false });
+}

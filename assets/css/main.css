@@ -2,9 +2,13 @@
     font-family: 'Aspekta';
     src: url('/assets/fonts/Aspekta-400.woff2');
 }
+
 body {
     background: #466B84;
+    height: 100%;
+    overflow: hidden;
 }
+
 #strumPlate {
     background: #fff;
     border-style: solid;
@@ -32,6 +36,34 @@ body {
     height: 450px;
 }
 
+
+.loading-cart {
+    display: none;
+}
+
+.loading > * {
+    display: none;
+}
+
+.loading .loading-cart{
+    display: block;
+}
+
+.activate-screen {
+    background-color: black;
+    bottom: 0;
+    color: white;
+    font-size: 60px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.activate-screen.activated {
+    display: none;
+}
+
 .chords {
     position: absolute;
     top: 50%;
@@ -54,7 +86,7 @@ body {
     background-color: #EA95BF;
 }
 
-.middleCircle{
+.middleCircle {
     width: 310px;
     height: 310px;
     background-color: #E672A9;
@@ -79,11 +111,9 @@ button {
 }
 
 .currentChord {
-    color:#fff;
+    color: #fff;
     font-size: 50px;
     font-family: 'Aspekta', sans-serif;
 }
 
-.septiemeButton {
- 
-}
+.septiemeButton {}

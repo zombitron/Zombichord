@@ -1,4 +1,4 @@
-var chordPlayer = {
+let chordPlayer = {
     chordsUrls: {
         "A3": "A3.wav",
         "A#3": "A#3.wav",
@@ -15,17 +15,21 @@ var chordPlayer = {
     },
     chordInstrument: 'chordPlayer2',
     ready: false,
-    initialize: function () {
-        this.sampler = new Tone.Sampler({
-            urls: this.chordsUrls,
-            release: 0.1,
-            attack: 0.1,
-            volume: -10,
-            onload: function(){
-                this.ready = true;
-            }.bind(this),
-            baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
-        }).toDestination();
+    initialize: async function () {
+        await new Promise((done) => {
+            this.sampler = new Tone.Sampler({
+                urls: this.chordsUrls,
+                release: 0.1,
+                attack: 0.1,
+                volume: -10,
+                onload: function(){
+                    done();
+                }.bind(this),
+                baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
+            }).toDestination();
+        }).then(() => {
+            this.ready = true;
+        })
     },
     startChord: function (notes) {
         if(this.ready){

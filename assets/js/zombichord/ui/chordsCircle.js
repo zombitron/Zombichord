@@ -4,8 +4,8 @@ var chordsCircle = {
     element: null,
     buttons : [],
     currentChord: null,
-    initialize: function(){
-        this.element = document.querySelector(".chordsContainer");
+    initialize: function(container){
+        this.element = container; 
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
 
@@ -14,10 +14,10 @@ var chordsCircle = {
         // bouton chord memory
         this.createOptionButton('.memoryButton', 'chordMemory');
 
-        this.currentChord = document.querySelector(".currentChord");
+        this.currentChord = this.element.querySelector(".currentChord");
     },
     createCircle: function(circleClass, chordNames, radius) {
-        var circle = document.querySelector(circleClass);
+        var circle = this.element.querySelector(circleClass);
         for (let i = 0; i < chordNames.length; i++) {
             var angle = (i / chordNames.length) * 360;
             var x = radius * Math.cos(angle * (Math.PI / 180));
@@ -50,7 +50,7 @@ var chordsCircle = {
         return button;
     },
     createOptionButton(buttonClass, eventName){
-        var optionButton = document.querySelector(buttonClass);
+        var optionButton = this.element.querySelector(buttonClass);
         optionButton.addEventListener("change", function(e){
             var event = new CustomEvent(eventName, {detail: e.target.checked});
             this.element.dispatchEvent(event);
