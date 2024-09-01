@@ -9,33 +9,31 @@ chordsCircle.initialize(chordsContainer);
 chordsContainer.classList.add('loading');
 
 chordsCircle.element.addEventListener('chordTrigger', function (e) {
-    socket.emit('message', {id:'chordTrigger', value: e.detail});
+    socket.emit('message', { id: 'chordTrigger', value: e.detail });
 });
 
 chordsCircle.element.addEventListener('chordRelease', function (e) {
-    socket.emit('message', {id:'chordRelease', value: e.detail});
+    socket.emit('message', { id: 'chordRelease', value: e.detail });
 });
 
 chordsCircle.element.addEventListener('7th', function (e) {
-    socket.emit('message', {id:'7th', value: e.detail});
+    socket.emit('message', { id: '7th', value: e.detail });
 });
 
 chordsCircle.element.addEventListener('chordMemory', function (e) {
-    socket.emit('message', {id:'chordMemory', value: e.detail});
+    socket.emit('message', { id: 'chordMemory', value: e.detail });
 });
 
 socket.on('state', function (state) {
-    if(state == 'ready'){
-        console.log("ready");
+    if (state == 'ready') {
         chordsContainer.classList.remove('loading');
     }
-    if(state == 'loading'){
-        console.log("loading");
+    if (state == 'loading') {
         chordsContainer.classList.add('loading');
     }
 });
 
-document.addEventListener("click", function(event){
+document.addEventListener("click", function (event) {
     event.preventDefault;
     if (document.fullscreenEnabled) {
         // document.querySelector('body').requestFullscreen();

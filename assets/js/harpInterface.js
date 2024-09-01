@@ -6,29 +6,24 @@ var socket = io();
 
 var harpContainer = document.querySelector(".harpContainer");
 
-if(harpContainer){
-
-
-    
+if (harpContainer) {
     strumPlate.initialize(harpContainer);
     harpContainer.addEventListener('harp', function (e) {
-        socket.emit('message', {id:'harp', value: e.detail});
+        socket.emit('message', { id: 'harp', value: e.detail });
     });
-    
+
     zombichord.initialize(); // zombichord depend de tone js, c'est en ES6 
-    
+
     socket.on('state', function (state) {
-        if(state == 'ready'){
-            console.log("ready");
+        if (state == 'ready') {
             harpContainer.classList.remove('loading');
         }
-        if(state == 'loading'){
-            console.log("loading");
+        if (state == 'loading') {
             harpContainer.classList.add('loading');
         }
     });
 
-    document.addEventListener("click", function(event){
+    document.addEventListener("click", function (event) {
         event.preventDefault;
         if (document.fullscreenEnabled) {
             // document.querySelector('body').requestFullscreen();

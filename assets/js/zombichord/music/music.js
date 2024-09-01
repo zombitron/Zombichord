@@ -18,7 +18,7 @@ let musicPlayer = {
     initialize: async function () {
         await Promise.all(
             [this.chordPlayer.initialize(),
-            this.harpPlayer.initialize(), 
+            this.harpPlayer.initialize(),
             Tone.loaded()]
         ).then(() => {
             this.start();
@@ -103,7 +103,7 @@ let musicPlayer = {
         }
     },
     playHarp(note) {
-        if (this.currentChord.notes.length > 0) { // only play of there is a chord activated
+        if (this.currentChord.notes.length > 0) { // only play if there is a chord activated
             let octave = Math.floor(note / 12) + 1; // finding octave according to note number
             let newnote = note % 12; // finding note position on octave
             newnote = Math.floor(newnote * this.currentChord.notes.length / 12); // keeping only x possibilities

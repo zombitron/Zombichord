@@ -22,7 +22,7 @@ var harpPlayer = {
                 release: 0.1,
                 attack: 0.1,
                 volume: -10,
-                onload: function(){
+                onload: function () {
                     done();
                 }.bind(this),
                 baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
@@ -32,7 +32,7 @@ var harpPlayer = {
         });
     },
     play: function (note) {
-        if(this.ready){
+        if (this.ready) {
             this.sampler.triggerAttackRelease(note, 1.5);
         }
     }

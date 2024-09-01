@@ -22,7 +22,7 @@ let chordPlayer = {
                 release: 0.1,
                 attack: 0.1,
                 volume: -10,
-                onload: function(){
+                onload: function () {
                     done();
                 }.bind(this),
                 baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
@@ -32,7 +32,7 @@ let chordPlayer = {
         })
     },
     startChord: function (notes) {
-        if(this.ready){
+        if (this.ready) {
             this.sampler.triggerAttack(notes);
         }
     },

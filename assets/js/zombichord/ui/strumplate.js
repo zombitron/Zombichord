@@ -1,17 +1,16 @@
 var strumPlate = {
     socket: null,
-    keysNumber:  60, // ( 5 * 12 )
-    currentTone : null,
-    initialize(harpContainer){
+    keysNumber: 60, // ( 5 * 12 )
+    currentTone: null,
+    element: null,
+    initialize(harpContainer) {
         this.element = harpContainer;
-
-        console.log(this.element)
         this.strumplate = this.element.querySelector("#strumPlate");
         this.rect = this.strumplate.getBoundingClientRect();
         this.strumplate.addEventListener("touchstart", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
-        
+
         this.strumplate.addEventListener("touchmove", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
@@ -19,18 +18,18 @@ var strumPlate = {
     },
     onTouchEvent(e) {
         e.preventDefault();
-        for(var i = 0; i< e.touches.length; i+=1){
+        for (var i = 0; i < e.touches.length; i += 1) {
             var x = e.touches[i].clientX - this.rect.left;
             var tone = Math.floor((x / this.rect.width) * this.keysNumber);
-            if(e.type == 'touchstart'){
-                var event = new CustomEvent("harp", {detail: tone} );
-                this.element.dispatchEvent(event)
+            if (e.type == 'touchstart') {
+                var event = new CustomEvent("harp", { detail: tone });
+                this.element.dispatchEvent(event);
                 this.currentTone = tone;
 
-            }else if (e.type == 'touchmove'){
-                if(this.currentTone != tone){
-                    var event = new CustomEvent("harp", {detail: tone} );
-                    this.element.dispatchEvent(event)
+            } else if (e.type == 'touchmove') {
+                if (this.currentTone != tone) {
+                    var event = new CustomEvent("harp", { detail: tone });
+                    this.element.dispatchEvent(event);
                     this.currentTone = tone;
                 }
             }

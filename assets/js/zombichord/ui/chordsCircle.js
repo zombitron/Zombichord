@@ -1,11 +1,10 @@
 var chordsCircle = {
-    chordsMaj : ["A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D"],
-    chordsMin : ["F#m", "C#m", "G#m", "Ebm", "Bbm", "Fm", "Cm", "Gm", "Dm", "Am", "Em", "Bm"],
+    chordsMaj: ["A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D"],
+    chordsMin: ["F#m", "C#m", "G#m", "Ebm", "Bbm", "Fm", "Cm", "Gm", "Dm", "Am", "Em", "Bm"],
     element: null,
-    buttons : [],
     currentChord: null,
-    initialize: function(container){
-        this.element = container; 
+    initialize: function (container) {
+        this.element = container;
         this.createCircle('.innerCircle', this.chordsMin, 120);
         this.createCircle('.outerCircle', this.chordsMaj, 180);
 
@@ -16,7 +15,7 @@ var chordsCircle = {
 
         this.currentChord = this.element.querySelector(".currentChord");
     },
-    createCircle: function(circleClass, chordNames, radius) {
+    createCircle: function (circleClass, chordNames, radius) {
         var circle = this.element.querySelector(circleClass);
         for (let i = 0; i < chordNames.length; i++) {
             var angle = (i / chordNames.length) * 360;
@@ -24,37 +23,37 @@ var chordsCircle = {
             var y = radius * Math.sin(angle * (Math.PI / 180));
             var button = this.createButton(x, y, chordNames[i]);
             circle.appendChild(button);
-            this.buttons.push(button);
         }
     },
-    createButton: function(posX, posY, chord){
+    createButton: function (posX, posY, chord) {
         var button = document.createElement('button');
         button.classList.add("chordButton");
         button.textContent = chord;
         button.value = chord;
         button.style.left = `calc(50% + ${posX}px )`;
         button.style.top = `calc(50% + ${posY}px )`;
-        button.addEventListener("touchstart", function(e){
+
+        button.addEventListener("touchstart", function (e) {
             e.preventDefault();
-            var event = new CustomEvent("chordTrigger", {detail: button.value} );
-            this.element.dispatchEvent(event)
+            var event = new CustomEvent("chordTrigger", { detail: button.value });
+            this.element.dispatchEvent(event);
             this.currentChord.textContent = button.value;
         }.bind(this));
 
-        button.addEventListener("touchend", function(e){
+        button.addEventListener("touchend", function (e) {
             e.preventDefault();
-            var event = new CustomEvent("chordRelease", {detail: button.value} );
+            var event = new CustomEvent("chordRelease", { detail: button.value });
             this.element.dispatchEvent(event);
             this.currentChord.textContent = '';
         }.bind(this));
         return button;
     },
-    createOptionButton(buttonClass, eventName){
+    createOptionButton(buttonClass, eventName) {
         var optionButton = this.element.querySelector(buttonClass);
-        optionButton.addEventListener("change", function(e){
-            var event = new CustomEvent(eventName, {detail: e.target.checked});
+        optionButton.addEventListener("change", function (e) {
+            var event = new CustomEvent(eventName, { detail: e.target.checked });
             this.element.dispatchEvent(event);
         }.bind(this));
     }
 }
-export default chordsCircle
+export default chordsCircle;
