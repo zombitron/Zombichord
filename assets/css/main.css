@@ -32,8 +32,8 @@ body {
     flex-wrap: wrap;
     align-content: flex-end;
     justify-content: flex-end;
-    width: 450px;
-    height: 450px;
+    width: 500px;
+    height: 500px;
 }
 
 
@@ -50,7 +50,7 @@ body {
 }
 
 .activate-screen {
-    background-color: black;
+    background-color: #466B84;
     bottom: 0;
     color: white;
     font-size: 60px;
@@ -58,10 +58,18 @@ body {
     position: absolute;
     right: 0;
     top: 0;
+    font-family: 'Aspekta', sans-serif;
 }
 
 .activate-screen.activated {
     display: none;
+}
+
+span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .chords {
@@ -93,7 +101,7 @@ body {
 
 }
 
-button {
+button, input {
     width: 50px;
     height: 50px;
     border: none;
@@ -116,4 +124,19 @@ button {
     font-family: 'Aspekta', sans-serif;
 }
 
-.septiemeButton {}
+input[type="checkbox"] {
+    appearance: none;
+}
+
+
+input[type="checkbox"]:checked {
+    background-color: #466B84;
+    border: 2px solid #EA95BF;
+}
+
+input[type="checkbox"]+label {
+    font-family: 'Aspekta', sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
