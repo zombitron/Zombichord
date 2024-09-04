@@ -1,5 +1,6 @@
 import '/socket.io/socket.io.js';
 import chordsCircle from '/assets/js/zombichord/ui/chordsCircle.js'; // charge la vue circle
+import controlRack from '/assets/js/zombichord/ui/controlRack.js'; 
 
 window.addEventListener('load', function(){
     // listen ton chords event and send socket
@@ -7,10 +8,11 @@ window.addEventListener('load', function(){
     socket.emit('message', { id: 'hello'});
     
     var chordsContainer = document.querySelector(".chordsContainer");
-    
+
     chordsContainer.classList.add('loading');
+
     chordsCircle.initialize(chordsContainer);
-    
+
     chordsCircle.element.addEventListener('chordTrigger', function (e) {
         socket.emit('message', { id: 'chordTrigger', value: e.detail });
     });
@@ -23,7 +25,10 @@ window.addEventListener('load', function(){
         socket.emit('message', { id: '7th', value: e.detail });
     });
     
-    chordsCircle.element.addEventListener('chordMemory', function (e) {
+
+    // Controles 
+    controlRack.initialize(chordsContainer);
+    controlRack.element.addEventListener('chordMemory', function (e) {
         socket.emit('message', { id: 'chordMemory', value: e.detail });
     });
     

@@ -10,8 +10,6 @@ var chordsCircle = {
 
         // cree le 7th
         this.createOptionButton('.septiemeButton', '7th');
-        // bouton chord memory
-        this.createOptionButton('.memoryButton', 'chordMemory');
 
         this.currentChord = this.element.querySelector(".currentChord");
     },

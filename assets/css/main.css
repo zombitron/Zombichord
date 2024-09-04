@@ -103,9 +103,9 @@ input[type="checkbox"]+label {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    left: 100%;
     position: absolute;
-    top: 100%;
+    top: 80vh;
+    right: 100px;
 }
 
 .playingInterface .chords {
