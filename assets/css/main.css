@@ -12,9 +12,10 @@ body {
     justify-content: center;
     margin: 0;
     overflow: hidden;
+    color: white;
 }
 
-.loading > * {
+.loading>* {
     display: none !important;
 }
 
@@ -36,11 +37,34 @@ body {
 button,
 input[type="checkbox"] {
     background-color: #fff;
-    border-radius: 25px;
+    border-radius: 50px;
     border: none;
     color: black;
-    height: 50px;
-    width: 50px;
+    height: 70px;
+    width: 70px;
+}
+
+input[type="range"] {
+    appearance: none;
+    background-color: #EA95BF;
+    border-radius: 30px;
+    height: 20px;
+    margin: 20px 0;
+    width: 100%;
+}
+/* 
+input[type="range"]::-webkit-slider-runnable-track {
+
+} */
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    height: 70px;
+    width: 70px;
 }
 
 input[type="checkbox"] {
@@ -53,13 +77,12 @@ input[type="checkbox"]:checked {
     border: 3px solid #EA95BF;
 }
 
-input[type="checkbox"]+label {
+input+label {
     color: white;
     font-size: 16px;
 }
 
 /* INTERFACE HARP */
-
 #strumPlate {
     background: #fff;
     border-color: #fff;
@@ -82,14 +105,18 @@ input[type="checkbox"]+label {
 .chordsContainer .controllers {
     border-left: 3px solid white;
     width: 300px;
-    padding: 30px;
+    padding: 30px 10px;
 }
 
-.controllers span {
+.controllers .button-container {
     display: flex;
     align-items: center;
     width: 100%;
     gap: 20px;
+}
+
+.controllers .volume-rack {
+    padding: 20px;
 }
 
 /* playing interface */
@@ -100,12 +127,12 @@ input[type="checkbox"]+label {
 
 .playingInterface span {
     align-items: center;
+    bottom: 0vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    top: 80vh;
-    right: 100px;
+    right: 5vh;
 }
 
 .playingInterface .chords {
@@ -119,21 +146,21 @@ input[type="checkbox"]+label {
 .playingInterface .innerCircle {
     align-items: center;
     background-color: #466B84;
-    height: 56vh;
+    height: 47vh;
     justify-content: center;
-    width: 56vh;
+    width: 47vh;
 }
 
 .playingInterface .outerCircle {
     background-color: #EA95BF;
-    height: 84vh;
-    width: 84vh;
+    height: 75vh;
+    width: 75vh;
 }
 
 .playingInterface .middleCircle {
     background-color: #E672A9;
-    height: 72vh;
-    width: 72vh;
+    height: 60vh;
+    width: 60vh;
 }
 
 .playingInterface .chordButton {

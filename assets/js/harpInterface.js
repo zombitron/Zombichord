@@ -40,7 +40,6 @@ if (harpContainer) {
         if (document.fullscreenEnabled) {
             // document.querySelector('body').requestFullscreen();
         }
-        console.log(document.querySelector('.activate-screen > p'))
         document.querySelector('.activate-screen > p').textContent = 'Loading';
         zombichord.start();
     }, { once: true, passive: false });

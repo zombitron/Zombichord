@@ -19,10 +19,20 @@
             </span>
         </div>
         <div class="controllers">
-            <span>
+            <span class="button-container">
                 <input type="checkbox" class="memoryButton" id="memoryButton" name='chordmemory' />
                 <label for="memoryButton">Chord memory</label>
             </span>
+            <div class="volume-rack">
+                <span>
+                    <label for="chordvolume">Chord Volume</label>
+                    <input type="range" min="0" max="100" value="100" class="chordvolume" id="chordvolume">
+                </span>
+                <span>
+                    <label for="harpvolume">Harp Volume</label>
+                    <input type="range" min="0" max="100" value="100" class="harpvolume" id="harpvolume">
+                </span>
+            </div>
         </div>
     </div>
     <script type="module" src="/assets/js/chordsInterface.js"></script>

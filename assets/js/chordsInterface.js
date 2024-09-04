@@ -31,20 +31,21 @@ window.addEventListener('load', function(){
     controlRack.element.addEventListener('chordMemory', function (e) {
         socket.emit('message', { id: 'chordMemory', value: e.detail });
     });
-    
+    controlRack.element.addEventListener('chordVolume', function (e) {
+        socket.emit('message', { id: 'chordVolume', value: e.detail });
+    });
+    controlRack.element.addEventListener('harpVolume', function (e) {
+        socket.emit('message', { id: 'harpVolume', value: e.detail });
+    });
+
     socket.on('state', function (state) {
-        if (state == 'loaded') {
-            console.log("loaded")
-        }
     
         if (state == 'started') {
             chordsContainer.classList.remove('loading');
-            console.log("stared")
         }
     
         if (state == 'loading') {
             chordsContainer.classList.add('loading');
-            console.log("loading")
         }
     });
 })
@@ -52,6 +53,6 @@ window.addEventListener('load', function(){
 document.addEventListener("click", function (event) {
     event.preventDefault;
     if (document.fullscreenEnabled) {
-        // document.querySelector('body').requestFullscreen();
+        document.querySelector('body').requestFullscreen();
     }
 }, { once: true, passive: false });
