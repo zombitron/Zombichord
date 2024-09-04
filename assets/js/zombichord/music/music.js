@@ -20,9 +20,7 @@ let musicPlayer = {
             [this.chordPlayer.initialize(),
             this.harpPlayer.initialize(),
             Tone.loaded()]
-        ).then(() => {
-            this.start();
-        });
+        );
     },
     start() {
         Tone.context.resume();
@@ -103,6 +101,8 @@ let musicPlayer = {
         }
     },
     playHarp(note) {
+        // const synth = new Tone.Synth().toDestination();
+        // synth.triggerAttackRelease("C4", "0.01");
         if (this.currentChord.notes.length > 0) { // only play if there is a chord activated
             let octave = Math.floor(note / 12) + 1; // finding octave according to note number
             let newnote = note % 12; // finding note position on octave

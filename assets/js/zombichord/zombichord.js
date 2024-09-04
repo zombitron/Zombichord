@@ -31,6 +31,7 @@ let zombichord = {
         }
     },
     start(){
+        this.music.start();
         this.started = true;
         this.sendState();
     },

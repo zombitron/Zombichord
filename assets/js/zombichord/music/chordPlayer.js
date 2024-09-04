@@ -31,6 +31,7 @@ let chordPlayer = {
             }).connect(this.gain);
         }).then(() => {
             this.ready = true;
+            this.sampler.context.resume();
         })
     },
     startChord: function (notes) {

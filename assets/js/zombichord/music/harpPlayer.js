@@ -32,6 +32,7 @@ const harpPlayer = {
             }).connect(this.gain);
         }).then(() => {
             this.ready = true;
+            this.sampler.context.resume();
         });
     },
     play: function (note) {
