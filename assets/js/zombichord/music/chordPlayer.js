@@ -13,7 +13,7 @@ let chordPlayer = {
         "G3": "G3.wav",
         "G#3": "G#3.wav",
     },
-    chordInstrument: 'chordPlayer2',
+    chordInstrument: 'PADDY',
     ready: false,
     gain: null,
     initialize: async function () {

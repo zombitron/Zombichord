@@ -13,7 +13,7 @@ const harpPlayer = {
         "G3": "G3.wav",
         "G#3": "G#3.wav",
     },
-    chordInstrument: 'chordPlayer2',
+    chordInstrument: 'OGRE',
     ready: false,
     playingNote: null,
     gain: null,
