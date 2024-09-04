@@ -81,14 +81,21 @@ input[type="checkbox"]+label {
 /* controller interface */
 .chordsContainer .controllers {
     border-left: 3px solid white;
-    width: 400px;
+    width: 300px;
+    padding: 30px;
+}
+
+.controllers span {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
 }
 
 /* playing interface */
 .chordsContainer .playingInterface {
-    height: 500px;
     position: relative;
-    width: 500px;
+    width: 100%;
 }
 
 .playingInterface span {
@@ -112,21 +119,21 @@ input[type="checkbox"]+label {
 .playingInterface .innerCircle {
     align-items: center;
     background-color: #466B84;
-    height: 240px;
+    height: 56vh;
     justify-content: center;
-    width: 240px;
+    width: 56vh;
 }
 
 .playingInterface .outerCircle {
     background-color: #EA95BF;
-    height: 360px;
-    width: 360px;
+    height: 84vh;
+    width: 84vh;
 }
 
 .playingInterface .middleCircle {
     background-color: #E672A9;
-    height: 310px;
-    width: 310px;
+    height: 72vh;
+    width: 72vh;
 }
 
 .playingInterface .chordButton {
