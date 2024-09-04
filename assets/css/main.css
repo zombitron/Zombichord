@@ -14,31 +14,12 @@ body {
     font-family: 'Aspekta', sans-serif;
 }
 
-#strumPlate {
-    background: #fff;
-    border-style: solid;
-    border-color: #fff;
-    border-width: 1pt;
-    height: 100px;
-    width: 500px;
-}
-
-.chordsContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-end;
-    justify-content: flex-end;
-    width: 500px;
-    height: 500px;
-}
-
-
 .loading-cart {
     display: none;
 }
 
 .loading > * {
-    display: none;
+    display: none !important;
 }
 
 .loading .loading-cart{
@@ -60,42 +41,6 @@ body {
     display: none;
 }
 
-span{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.chords {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-}
-
-.innerCircle {
-    width: 240px;
-    height: 240px;
-    background-color: #466B84;
-    align-items: center;
-    justify-content: center;
-}
-
-.outerCircle {
-    width: 360px;
-    height: 360px;
-    background-color: #EA95BF;
-}
-
-.middleCircle {
-    width: 310px;
-    height: 310px;
-    background-color: #E672A9;
-
-}
-
 button,
 input[type="checkbox"] {
     width: 50px;
@@ -104,17 +49,6 @@ input[type="checkbox"] {
     background-color: #fff;
     color: black;
     border-radius: 25px;
-}
-
-.chordButton {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    transform-origin: center;
-}
-
-.currentChord {
-    color: #fff;
-    font-size: 50px;
 }
 
 input[type="checkbox"] {
@@ -132,3 +66,70 @@ input[type="checkbox"]+label {
     color: white;
 }
 
+/* INTERFACE HARP */
+
+#strumPlate {
+    background: #fff;
+    border-style: solid;
+    border-color: #fff;
+    border-width: 1pt;
+    height: 100px;
+    width: 500px;
+}
+
+/* INTERFACE CHORDS */
+.chordsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-end;
+    justify-content: flex-end;
+    width: 500px;
+    height: 500px;
+}
+
+.chordsContainer span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.chordsContainer .chords {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.chordsContainer .innerCircle {
+    width: 240px;
+    height: 240px;
+    background-color: #466B84;
+    align-items: center;
+    justify-content: center;
+}
+
+.chordsContainer .outerCircle {
+    width: 360px;
+    height: 360px;
+    background-color: #EA95BF;
+}
+
+.chordsContainer .middleCircle {
+    width: 310px;
+    height: 310px;
+    background-color: #E672A9;
+
+}
+
+.chordsContainer .chordButton {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+}
+
+.chordsContainer .currentChord {
+    color: #fff;
+    font-size: 50px;
+}
