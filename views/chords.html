@@ -8,19 +8,22 @@
 </head>
 <body>
     <div class="chordsContainer">
-        <div class="chords outerCircle"></div>
-        <div class="chords middleCircle"></div>
-        <div class="chords innerCircle">
+        <div class="playingInterface">
+            <div class="chords outerCircle"></div>
+            <div class="chords middleCircle"></div>
+            <div class="chords innerCircle"></div>
+            <div class="chords currentChord"></div>
+            <span>
+                <input type="checkbox" class="septiemeButton" id="septiemeButton" name='7th' />
+                <label for="septiemeButton">7th</label>
+            </span>
         </div>
-        <div class="chords currentChord"></div>
-        <span>
-            <input type="checkbox" class="septiemeButton" id="septiemeButton" name='7th' />
-            <label for="septiemeButton">7th</label>
-        </span>
-        <span>
-            <input type="checkbox" class="memoryButton" id="memoryButton" name='chordmemory' />
-            <label for="memoryButton">Mem</label>
-        </span>
+        <div class="controllers">
+            <span>
+                <input type="checkbox" class="memoryButton" id="memoryButton" name='chordmemory' />
+                <label for="memoryButton">Mem</label>
+            </span>
+        </div>
     </div>
     <script type="module" src="/assets/js/chordsInterface.js"></script>
 </body>

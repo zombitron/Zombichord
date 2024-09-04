@@ -1,4 +1,4 @@
-var harpPlayer = {
+const harpPlayer = {
     soundUrls: {
         "A3": "A3.wav",
         "A#3": "A#3.wav",

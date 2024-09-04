@@ -4,14 +4,14 @@
 }
 
 body {
+    align-items: center;
     background: #466B84;
+    display: flex;
+    font-family: 'Aspekta', sans-serif;
     height: 100vh;
+    justify-content: center;
     margin: 0;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Aspekta', sans-serif;
 }
 
 .loading > * {
@@ -35,12 +35,12 @@ body {
 
 button,
 input[type="checkbox"] {
-    width: 50px;
-    height: 50px;
-    border: none;
     background-color: #fff;
-    color: black;
     border-radius: 25px;
+    border: none;
+    color: black;
+    height: 50px;
+    width: 50px;
 }
 
 input[type="checkbox"] {
@@ -54,16 +54,16 @@ input[type="checkbox"]:checked {
 }
 
 input[type="checkbox"]+label {
-    font-size: 16px;
     color: white;
+    font-size: 16px;
 }
 
 /* INTERFACE HARP */
 
 #strumPlate {
     background: #fff;
-    border-style: solid;
     border-color: #fff;
+    border-style: solid;
     border-width: 1pt;
     height: 100px;
     width: 500px;
@@ -72,56 +72,70 @@ input[type="checkbox"]+label {
 /* INTERFACE CHORDS */
 .chordsContainer {
     display: flex;
-    flex-wrap: wrap;
-    align-content: flex-end;
-    justify-content: flex-end;
-    width: 500px;
-    height: 500px;
+    flex-direction: row;
+    height: 100%;
+    justify-content: space-between;
+    width: 100%;
 }
 
-.chordsContainer span {
+/* controller interface */
+.chordsContainer .controllers {
+    border-left: 3px solid white;
+    width: 400px;
+}
+
+/* playing interface */
+.chordsContainer .playingInterface {
+    height: 500px;
+    position: relative;
+    width: 500px;
+}
+
+.playingInterface span {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    left: 100%;
+    position: absolute;
+    top: 100%;
 }
 
-.chordsContainer .chords {
+.playingInterface .chords {
+    border-radius: 50%;
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 50%;
 }
 
-.chordsContainer .innerCircle {
-    width: 240px;
-    height: 240px;
-    background-color: #466B84;
+.playingInterface .innerCircle {
     align-items: center;
+    background-color: #466B84;
+    height: 240px;
     justify-content: center;
+    width: 240px;
 }
 
-.chordsContainer .outerCircle {
-    width: 360px;
-    height: 360px;
+.playingInterface .outerCircle {
     background-color: #EA95BF;
+    height: 360px;
+    width: 360px;
 }
 
-.chordsContainer .middleCircle {
-    width: 310px;
-    height: 310px;
+.playingInterface .middleCircle {
     background-color: #E672A9;
-
+    height: 310px;
+    width: 310px;
 }
 
-.chordsContainer .chordButton {
+.playingInterface .chordButton {
     position: absolute;
-    transform: translate(-50%, -50%);
     transform-origin: center;
+    transform: translate(-50%, -50%);
 }
 
-.chordsContainer .currentChord {
+.playingInterface .currentChord {
     color: #fff;
     font-size: 50px;
 }
