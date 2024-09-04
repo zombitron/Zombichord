@@ -16,8 +16,10 @@ const harpPlayer = {
     chordInstrument: 'chordPlayer2',
     ready: false,
     playingNote: null,
+    gain: null,
     initialize: async function () {
         await new Promise((done) => {
+            this.gain = new Tone.Gain(1).toDestination();
             this.sampler = new Tone.Sampler({
                 urls: this.soundUrls,
                 release: 0.1,
@@ -27,7 +29,7 @@ const harpPlayer = {
                     done();
                 }.bind(this),
                 baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
-            }).toDestination();
+            }).connect(this.gain);
         }).then(() => {
             this.ready = true;
         });
@@ -42,6 +44,9 @@ const harpPlayer = {
         if (this.ready) {
             this.sampler.releaseAll();
         }
+    },
+    setVolume(volume){
+        this.gain.gain.rampTo(volume,0.1);
     }
 }
 export default harpPlayer

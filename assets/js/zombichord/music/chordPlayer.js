@@ -15,8 +15,10 @@ let chordPlayer = {
     },
     chordInstrument: 'chordPlayer2',
     ready: false,
+    gain: null,
     initialize: async function () {
         await new Promise((done) => {
+            this.gain = new Tone.Gain(1).toDestination();
             this.sampler = new Tone.Sampler({
                 urls: this.chordsUrls,
                 release: 0.1,
@@ -26,7 +28,7 @@ let chordPlayer = {
                     done();
                 }.bind(this),
                 baseUrl: "/assets/instruments/" + this.chordInstrument + "/"
-            }).toDestination();
+            }).connect(this.gain);
         }).then(() => {
             this.ready = true;
         })
@@ -38,6 +40,9 @@ let chordPlayer = {
     },
     stopChord: function (notes) {
         this.sampler.triggerRelease(notes);
+    },
+    setVolume(volume){
+        this.gain.gain.rampTo(volume,0.1);
     }
 }
 export default chordPlayer

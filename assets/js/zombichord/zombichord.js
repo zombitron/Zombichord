@@ -71,7 +71,14 @@ let zombichord = {
         this.socket.on('hello', () => {
             this.sendState();
         });
-        
+
+        this.socket.on('chordVolume', (volume) => {
+            this.music.setChordVolume(volume/100);
+        });
+
+        this.socket.on('harpVolume', (volume) => {
+            this.music.setHarpVolume(volume/100);
+        });
     }
 }
 export default zombichord;

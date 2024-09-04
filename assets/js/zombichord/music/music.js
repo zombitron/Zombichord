@@ -122,6 +122,12 @@ let musicPlayer = {
     stopAll(){
         this.chordPlayer.stopChord(this.currentChord.notes); // stop l'accord
         this.harpPlayer.stop();
+    },
+    setChordVolume(volume){
+        this.chordPlayer.setVolume(volume);
+    },
+    setHarpVolume(volume){
+        this.harpPlayer.setVolume(volume);
     }
 }
 export default musicPlayer
