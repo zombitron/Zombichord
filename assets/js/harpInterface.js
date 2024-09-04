@@ -12,6 +12,14 @@ if (harpContainer) {
         socket.emit('message', { id: 'harp', value: e.detail });
     });
 
+    harpContainer.addEventListener('mute', function (e) {
+        socket.emit('message', { id: 'mute', value: e.detail });
+    });
+
+    harpContainer.addEventListener('unMute', function (e) {
+        socket.emit('message', { id: 'unMute', value: e.detail });
+    });
+
     zombichord.initialize(); // zombichord depend de tone js, c'est en ES6 
 
     socket.on('state', function (state) {

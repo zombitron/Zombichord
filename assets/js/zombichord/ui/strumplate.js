@@ -6,6 +6,7 @@ var strumPlate = {
     initialize(harpContainer) {
         this.element = harpContainer;
         this.strumplate = this.element.querySelector("#strumPlate");
+        this.muteButton = this.element.querySelector(".muteButton");
         this.rect = this.strumplate.getBoundingClientRect();
         this.strumplate.addEventListener("touchstart", function (e) {
             this.onTouchEvent(e);
@@ -14,6 +15,13 @@ var strumPlate = {
         this.strumplate.addEventListener("touchmove", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
+        this.muteButton.addEventListener("touchstart", function(e){
+            this.onMuteEvent(e);
+        }).bind(this);
+        this.muteButton.addEventListener("touchend", function (e) {
+            this.onMuteEvent(e);
+        }).bind(this);
+
         this.createKeys();
     },
     onTouchEvent(e) {
@@ -44,6 +52,16 @@ var strumPlate = {
 
             ctx.strokeStyle = "#fff";
             ctx.strokeRect(i * keyWidth, 0, keyWidth, this.strumplate.height);
+        }
+    },
+    OnMuteEvent() {
+        e.preventDefault();
+        if (e.type == 'touchstart') {
+            var event = new CustomEvent("mute", { detail: button.value });
+            this.element.dispatchEvent(event);
+        } else if (e.type == 'touchend') {
+            var event = new CustomEvent("unMute", { detail: button.value });
+            this.element.dispatchEvent(event);
         }
     }
 };
