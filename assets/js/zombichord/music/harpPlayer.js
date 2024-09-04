@@ -15,6 +15,7 @@ var harpPlayer = {
     },
     chordInstrument: 'chordPlayer2',
     ready: false,
+    playingNote: null,
     initialize: async function () {
         await new Promise((done) => {
             this.sampler = new Tone.Sampler({
@@ -33,7 +34,13 @@ var harpPlayer = {
     },
     play: function (note) {
         if (this.ready) {
-            this.sampler.triggerAttackRelease(note, 1.5);
+            this.playingNote = note;
+            this.sampler.triggerAttack(note);
+        }
+    },
+    stop: function () {
+        if (this.ready) {
+            this.sampler.releaseAll();
         }
     }
 }

@@ -3,10 +3,12 @@ import chordsCircle from '/assets/js/zombichord/ui/chordsCircle.js'; // charge l
 
 // listen ton chords event and send socket
 var socket = io();
+socket.emit('message', { id: 'hello'});
 
 var chordsContainer = document.querySelector(".chordsContainer");
-chordsCircle.initialize(chordsContainer);
+
 chordsContainer.classList.add('loading');
+chordsCircle.initialize(chordsContainer);
 
 chordsCircle.element.addEventListener('chordTrigger', function (e) {
     socket.emit('message', { id: 'chordTrigger', value: e.detail });
@@ -25,11 +27,18 @@ chordsCircle.element.addEventListener('chordMemory', function (e) {
 });
 
 socket.on('state', function (state) {
-    if (state == 'ready') {
-        chordsContainer.classList.remove('loading');
+    if (state == 'loaded') {
+        console.log("loaded")
     }
+
+    if (state == 'started') {
+        chordsContainer.classList.remove('loading');
+        console.log("stared")
+    }
+
     if (state == 'loading') {
         chordsContainer.classList.add('loading');
+        console.log("loading")
     }
 });
 

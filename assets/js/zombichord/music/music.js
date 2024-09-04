@@ -118,6 +118,10 @@ let musicPlayer = {
     },
     toggle7th(activated) {
         this.sthActivated = activated;
+    },
+    stopAll(){
+        this.chordPlayer.stopChord(this.currentChord.notes); // stop l'accord
+        this.harpPlayer.stop();
     }
 }
 export default musicPlayer

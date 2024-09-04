@@ -13,21 +13,25 @@ if (harpContainer) {
     });
 
     harpContainer.addEventListener('mute', function (e) {
-        socket.emit('message', { id: 'mute', value: e.detail });
-    });
-
-    harpContainer.addEventListener('unMute', function (e) {
-        socket.emit('message', { id: 'unMute', value: e.detail });
+        socket.emit('message', { id: 'mute'});
     });
 
     zombichord.initialize(); // zombichord depend de tone js, c'est en ES6 
+    
+    window.addEventListener("beforeunload", function(event) {
+        zombichord.stop();
+    });
 
     socket.on('state', function (state) {
-        if (state == 'ready') {
+        if (state == 'loaded') {
             harpContainer.classList.remove('loading');
         }
         if (state == 'loading') {
             harpContainer.classList.add('loading');
+        }
+        if (state == "started"){
+            harpContainer.classList.add('started');
+            
         }
     });
 
@@ -36,6 +40,8 @@ if (harpContainer) {
         if (document.fullscreenEnabled) {
             // document.querySelector('body').requestFullscreen();
         }
-        document.querySelector('.activate-screen').classList.add("activated");
+        console.log(document.querySelector('.activate-screen > p'))
+        document.querySelector('.activate-screen > p').textContent = 'Loading';
+        zombichord.start();
     }, { once: true, passive: false });
 }

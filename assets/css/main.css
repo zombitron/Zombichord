@@ -14,16 +14,8 @@ body {
     font-family: 'Aspekta', sans-serif;
 }
 
-.loading-cart {
-    display: none;
-}
-
 .loading > * {
     display: none !important;
-}
-
-.loading .loading-cart{
-    display: block;
 }
 
 .activate-screen {
@@ -37,7 +29,7 @@ body {
     top: 0;
 }
 
-.activate-screen.activated {
+:not(.loading).started .activate-screen {
     display: none;
 }
 

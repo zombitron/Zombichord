@@ -15,13 +15,10 @@ var strumPlate = {
         this.strumplate.addEventListener("touchmove", function (e) {
             this.onTouchEvent(e);
         }.bind(this));
-        this.muteButton.addEventListener("touchstart", function(e){
-            this.onMuteEvent(e);
-        }).bind(this);
-        this.muteButton.addEventListener("touchend", function (e) {
-            this.onMuteEvent(e);
-        }).bind(this);
 
+        this.muteButton.addEventListener("touchstart", function(e){
+                this.onMuteEvent(e);
+            }.bind(this));
         this.createKeys();
     },
     onTouchEvent(e) {
@@ -54,15 +51,10 @@ var strumPlate = {
             ctx.strokeRect(i * keyWidth, 0, keyWidth, this.strumplate.height);
         }
     },
-    OnMuteEvent() {
+    onMuteEvent(e) {
         e.preventDefault();
-        if (e.type == 'touchstart') {
-            var event = new CustomEvent("mute", { detail: button.value });
-            this.element.dispatchEvent(event);
-        } else if (e.type == 'touchend') {
-            var event = new CustomEvent("unMute", { detail: button.value });
-            this.element.dispatchEvent(event);
-        }
+        var event = new CustomEvent("mute");
+        this.element.dispatchEvent(event);
     }
 };
 export default strumPlate;
