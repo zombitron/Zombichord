@@ -42,7 +42,6 @@ var chordsCircle = {
             e.preventDefault();
             var event = new CustomEvent("chordRelease", { detail: button.value });
             this.element.dispatchEvent(event);
-            this.currentChord.textContent = '';
         }.bind(this));
         return button;
     },
