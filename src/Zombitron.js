@@ -1,16 +1,16 @@
 class Zombitron {
-    #https_enabled;
-    #server;
-    #port;
+    https_enabled;
+    server;
+    port;
     constructor(https = false, port = 3000) {
-        this.#https_enabled = https;
-        this.#port = port;
+        this.https_enabled = https;
+        this.port = port;
 
         // initialize express
         const express = require('express');
         this.app = express();
 
-        this.#server = this.#init_server();
+        this.server = this.init_server();
 
         // initialize hostnames
         this.hostnames = ["localhost", "*"];
@@ -29,18 +29,18 @@ class Zombitron {
 
         // initialize websocket
         const { Server } = require("socket.io");
-        this.socketServer = new Server(this.#server);
+        this.socketServer = new Server(this.server);
 
         this.app.use('/scripts', express.static(__dirname + '/../node_modules'));
         this.app.use('/assets', express.static(__dirname + '/../assets'));
         this.app.use('/src', express.static(__dirname + '/../src'));
     }
 
-    #init_server() {
+    init_server() {
         let http;
         let server;
         const fs = require('fs');
-        if (this.#https_enabled) {
+        if (this.https_enabled) {
             http = require('https');
             const options = {
                 key: fs.readFileSync('selfsigned.key'),
@@ -55,14 +55,14 @@ class Zombitron {
     }
 
     start() {
-        this.#server.listen(this.#port, () => {
+        this.server.listen(this.port, () => {
             console.log(`listening on:`);
             this.hostnames.forEach(hostname => {
                 let protocol = "http";
-                if(this.#https_enabled) {
+                if(this.https_enabled) {
                     protocol = "https";
                 }
-                console.log(`- ${protocol}://${hostname}:${this.#port}`);
+                console.log(`- ${protocol}://${hostname}:${this.port}`);
             })
         });
     }
